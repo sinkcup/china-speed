@@ -36,7 +36,7 @@ pipeline {
             // SSH 上传文件到远端服务器
             sshPut remote: remote, from: 'tmp.tar.gz', into: '/tmp/'
             // 解压缩
-            sshCommand remote: remote, command: "tar -zxf /tmp/tmp.tar.gz"
+            sshCommand remote: remote, command: "tar -zxf /tmp/tmp.tar.gz -C /tmp/"
             sshCommand remote: remote, sudo: true, command: "mkdir -p /var/www/china-speed"
             sshCommand remote: remote, sudo: true, command: "cp -R /tmp/site/* /var/www/china-speed/"
             sshCommand remote: remote, sudo: true, command: "cp -R /tmp/apache2/ /etc/"
