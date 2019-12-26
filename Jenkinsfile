@@ -42,8 +42,7 @@ pipeline {
             sshCommand remote: remote, sudo: true, command: "cp -R /tmp/apache2/ /etc/"
             // 重启 apache2
             sshCommand remote: remote, sudo: true, command: "a2ensite china-speed.org.cn"
-            sshCommand remote: remote, sudo: true, command: "a2enmod ssl"
-            sshCommand remote: remote, sudo: true, command: "a2enmod rewrite"
+            sshCommand remote: remote, sudo: true, command: "a2enmod headers rewrite ssl"
             sshCommand remote: remote, sudo: true, command: "systemctl reload apache2"
           }
         }
