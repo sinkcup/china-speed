@@ -1,5 +1,7 @@
 # 计算机技术分享：中国速度
 
+由于 apt、composer、nodejs 等常用工具在国外，下载速度较慢，本站分享国内镜像信息，让开发者感受“中国速度”。
+
 ## apt source
 
 ```
@@ -32,6 +34,12 @@ jq '."packages"[]'"$url_suffix" composer.lock \
     | jq '."packages-dev"[]'"$url_suffix" \
     | jq --indent 4 '."packages-dev"[].dist.mirrors[0].preferred=true' > composer.lock.tmp
 mv composer.lock.tmp composer.lock
+```
+
+## nodejs setup
+
+```
+curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo -E bash -
 ```
 
 ## acknowledgements
