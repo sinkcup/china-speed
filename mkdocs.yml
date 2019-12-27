@@ -1,4 +1,5 @@
 site_name: "计算机技术分享：中国速度"
 copyright: <a rel="nofollow" href="http://www.beian.miit.gov.cn">沪ICP备19045595号-2</a>
+google_analytics: ['UA-155057169-1', 'china-speed.org.cn']
 nav:
     - "China Speed": "README.md"
