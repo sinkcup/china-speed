@@ -11,8 +11,7 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 ## composer setup
 
 ```
-curl -sS http://getcomposer.org.mirrors.china-speed.org.cn/installer -o composer-setup.php \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+curl -sS http://getcomposer.org.mirrors.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
 ## composer mirror before lock
