@@ -42,6 +42,15 @@ mv composer.lock.tmp composer.lock
 curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo -E bash -
 ```
 
+## npm registry
+
+```
+npm config set registry https://registry.npm.taobao.org
+npm config set registry http://mirrors.cloud.tencent.com/npm/
+
+npm config delete registry
+```
+
 ## acknowledgements
 
 感谢 [腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=10042&cps_key=16b83d1aa2e322d67b11fa1daaa4ab6b)、[七牛云](https://portal.qiniu.com/signup?code=1h6w1ounb13yp) 提供云存储和国内 CDN。
