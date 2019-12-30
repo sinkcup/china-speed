@@ -49,6 +49,17 @@ npm config set registry https://registry.npm.taobao.org
 npm config set registry http://mirrors.cloud.tencent.com/npm/
 
 npm config delete registry
+
+## pip
+
+```
+mkdir ~/.pip
+cat > ~/.pip/pip.conf << EOF
+[global]
+index-url=https://pypi.doubanio.com/simple/
+#index-url=http://mirrors.aliyun.com/pypi/simple/
+#index-url=http://mirrors.cloud.tencent.com/pypi/simple/
+EOF
 ```
 
 ## acknowledgements
