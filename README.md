@@ -49,6 +49,7 @@ npm config set registry https://registry.npm.taobao.org
 npm config set registry http://mirrors.cloud.tencent.com/npm/
 
 npm config delete registry
+```
 
 ## pip
 
