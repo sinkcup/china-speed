@@ -46,7 +46,10 @@ curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo
 
 ```
 npm config set registry https://registry.npm.taobao.org
-npm config set registry http://mirrors.cloud.tencent.com/npm/
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
+
+npm config set registry https://mirrors.cloud.tencent.com/npm/
+npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass/
 
 npm config delete registry
 ```
