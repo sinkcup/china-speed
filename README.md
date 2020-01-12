@@ -9,14 +9,24 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 
 find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.cloud.tencent.com/g'
 ```
+## get docker
 
-## composer setup
+```
+# https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script
+
+curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
+curl -fsSL http://get.docker.com.mirrors.china-speed.org.cn | sudo sh --
+
+sudo usermod -aG docker your-user
+```
+
+## get composer
 
 ```
 curl -sS http://getcomposer.org.mirrors.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-## composer mirror before lock
+## composer install
 
 ```
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
@@ -25,7 +35,7 @@ composer config -g repo.packagist composer https://mirrors.cloud.tencent.com/com
 composer config -g --unset repos.packagist
 ```
 
-## composer mirror when lock exists
+## composer install when lock exists
 
 ```
 url_suffix='.dist.mirrors[0].url="https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%"'
@@ -36,13 +46,13 @@ jq '."packages"[]'"$url_suffix" composer.lock \
 mv composer.lock.tmp composer.lock
 ```
 
-## nodejs setup
+## get nodejs npm
 
 ```
 curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo -E bash -
 ```
 
-## npm registry
+## npm install
 
 ```
 npm config set registry https://registry.npm.taobao.org
