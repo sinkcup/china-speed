@@ -17,7 +17,7 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
 curl -fsSL http://get.docker.com.mirrors.china-speed.org.cn | sudo sh --
 
-sudo usermod -aG docker your-user
+sudo usermod -aG docker $USER
 ```
 
 ## get composer
