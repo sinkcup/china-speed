@@ -9,6 +9,7 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 
 find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.cloud.tencent.com/g'
 ```
+
 ## get docker
 
 ```
@@ -18,6 +19,17 @@ curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
 curl -fsSL http://get.docker.com.mirrors.china-speed.org.cn | sudo sh --
 
 sudo usermod -aG docker $USER
+```
+
+## get kubectl
+
+```
+# https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
+
+curl -LO http://storage.googleapis.com.mirrors.china-speed.org.cn/kubernetes-release/release/v1.14.8/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version
 ```
 
 ## get composer
@@ -30,7 +42,6 @@ curl -sS http://getcomposer.org.mirrors.china-speed.org.cn/installer | sudo php 
 
 ```
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-composer config -g repo.packagist composer https://mirrors.cloud.tencent.com/composer/
 
 composer config -g --unset repos.packagist
 ```
