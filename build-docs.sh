@@ -1,9 +1,8 @@
 #!/bin/bash
 
 rm -rf docs
-mkdir -p docs/img/
-cp README.md docs/
-cp favicon.ico docs/img/
+mkdir -p docs/
+cp README.md favicon.ico docs/
 
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
