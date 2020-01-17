@@ -21,6 +21,38 @@ curl -fsSL http://get.docker.com.mirrors.china-speed.org.cn | sudo sh --
 sudo usermod -aG docker $USER
 ```
 
+## docker hub
+
+```
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": [
+    "https://dockerhub.azk8s.cn",
+    "https://hub-mirror.c.163.com"
+  ]
+}
+EOF
+sudo service docker restart
+docker info
+```
+
+## docker gcr.io
+
+```
+# docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
+
+docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
+```
+
+## docker mcr.microsoft.com
+
+```
+# docker pull mcr.microsoft.com/dotnet/core/runtime:3.1
+
+docker pull mcr.azk8s.cn/dotnet/core/runtime:3.1
+```
+
 ## get kubectl
 
 ```
