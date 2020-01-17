@@ -2,6 +2,9 @@
 
 由于 apt、composer、nodejs 等常用工具在国外，下载速度较慢，本站分享国内镜像加速信息，让开发者感受“中国速度”。
 
+[![CODING 持续集成](https://china-speed.coding.net/badges/china-speed/job/126839/build.svg)](https://coding.net/products/ci?cps_source=PIevZ6Jr)
+[![GitHub Actions](https://github.com/china-speed/china-speed.github.io/workflows/CI/badge.svg)](https://github.com/china-speed/china-speed.github.io/actions)
+
 ## apt source
 
 ```
