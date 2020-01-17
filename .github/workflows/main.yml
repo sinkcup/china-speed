@@ -28,4 +28,9 @@ jobs:
         ls -l ./site
         
     - name: deploy to gh-pages
-      run: npx gh-pages --message "[skip ci] Updates" --dist site
+      uses: crazy-max/ghaction-github-pages@v1
+      with:
+        target_branch: master
+        build_dir: site
+      env:
+        GITHUB_PAT: ${{ secrets.GIT_TOKEN }}
