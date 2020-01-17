@@ -28,6 +28,4 @@ jobs:
         ls -l ./site
         
     - name: deploy to gh-pages
-      run: |
-        sudo npm install -g --silent gh-pages
-        gh-pages --message "[skip ci] Updates" --dist site
+      run: npx gh-pages --message "[skip ci] Updates" --dist site
