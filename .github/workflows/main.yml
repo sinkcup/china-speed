@@ -24,7 +24,7 @@ jobs:
         apt-get update
         apt-get install -y mkdocs
         ./build-docs.sh
-        echo ${{ CUSTOM_DOMAIN }} > site/CNAME
+        echo $CUSTOM_DOMAIN > site/CNAME
         ls -l ./site
         
     - name: deploy to gh-pages
