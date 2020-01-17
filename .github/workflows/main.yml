@@ -21,13 +21,13 @@ jobs:
       env:
         CUSTOM_DOMAIN: china-speed.org
       run: | 
-        apt-get update
-        apt-get install -y mkdocs
+        sudo apt-get update
+        sudo apt-get install -y mkdocs
         ./build-docs.sh
         echo $CUSTOM_DOMAIN > site/CNAME
         ls -l ./site
         
     - name: deploy to gh-pages
       run: |
-        npm install -g --silent gh-pages
+        sudo npm install -g --silent gh-pages
         gh-pages --message "[skip ci] Updates" --dist site
