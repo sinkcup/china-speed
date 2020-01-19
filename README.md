@@ -7,7 +7,7 @@
 
 ## apt source
 
-```
+```shell
 find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.aliyun.com/g'
 
 find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.cloud.tencent.com/g'
@@ -15,7 +15,7 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 
 ## get docker
 
-```
+```shell
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script
 
 curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
@@ -26,7 +26,7 @@ sudo usermod -aG docker $USER
 
 ## docker hub
 
-```
+```shell
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
@@ -42,7 +42,7 @@ docker info
 
 ## docker gcr.io
 
-```
+```shell
 # docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
 
 docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
@@ -50,7 +50,7 @@ docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
 
 ## docker mcr.microsoft.com
 
-```
+```shell
 # docker pull mcr.microsoft.com/dotnet/core/runtime:3.1
 
 docker pull mcr.azk8s.cn/dotnet/core/runtime:3.1
@@ -58,7 +58,7 @@ docker pull mcr.azk8s.cn/dotnet/core/runtime:3.1
 
 ## get kubectl
 
-```
+```shell
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
 
 curl -LO http://storage.googleapis.com.mirrors.china-speed.org.cn/kubernetes-release/release/v1.14.8/bin/linux/amd64/kubectl
@@ -69,13 +69,13 @@ kubectl version
 
 ## get composer
 
-```
+```shell
 curl -sS http://getcomposer.org.mirrors.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
 ## composer install
 
-```
+```shell
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 composer config -g --unset repos.packagist
@@ -83,7 +83,7 @@ composer config -g --unset repos.packagist
 
 ## composer install when lock exists
 
-```
+```shell
 url_suffix='.dist.mirrors[0].url="https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%"'
 jq '."packages"[]'"$url_suffix" composer.lock \
     | jq '."packages"[].dist.mirrors[0].preferred=true' \
@@ -94,31 +94,31 @@ mv composer.lock.tmp composer.lock
 
 ## get nodejs npm
 
-```
+```shell
 curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo -E bash -
 ```
 
 ## npm install
 
-```
+```shell
 npm config set registry https://registry.npm.taobao.org
-npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass
 
 npm config set registry https://mirrors.cloud.tencent.com/npm/
-npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass/
+npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
 
 npm config delete registry
 ```
 
 ## pip
 
-```
+```shell
 mkdir ~/.pip
 cat > ~/.pip/pip.conf << EOF
 [global]
 index-url=https://pypi.doubanio.com/simple/
-#index-url=http://mirrors.aliyun.com/pypi/simple/
-#index-url=http://mirrors.cloud.tencent.com/pypi/simple/
+#index-url=https://mirrors.aliyun.com/pypi/simple/
+#index-url=https://mirrors.cloud.tencent.com/pypi/simple/
 EOF
 ```
 
