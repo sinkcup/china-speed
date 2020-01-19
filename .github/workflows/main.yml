@@ -17,6 +17,9 @@ jobs:
       with:
         node-version: '12.x'
 
+    - name: test
+      run: npx lint-md-cli *.md
+
     - name: build docs to HTML
       env:
         CUSTOM_DOMAIN: china-speed.org
@@ -27,7 +30,7 @@ jobs:
         ./build-docs.sh
         echo $CUSTOM_DOMAIN > site/CNAME
         ls -l ./site
-        
+
     - name: deploy to gh-pages
       uses: crazy-max/ghaction-github-pages@v1
       with:
