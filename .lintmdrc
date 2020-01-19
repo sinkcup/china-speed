@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-long-code": [2, {
+      "exclude": ["shell"]
+    }]
+  }
+}
