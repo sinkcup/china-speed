@@ -13,6 +13,7 @@ pipeline {
       steps {
         echo '检查中文 markdown 编写格式规范'
         sh 'npx lint-md-cli *.md'
+      }
     }
     stage('构建') {
       steps {
