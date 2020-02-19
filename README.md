@@ -122,6 +122,15 @@ index-url=https://pypi.doubanio.com/simple/
 EOF
 ```
 
+## go
+
+```shell
+# goproxy.io 采用 腾讯云香港
+# go env -w GOPROXY=https://goproxy.io,direct
+# goproxy.cn 采用 七牛大陆 CDN
+go env -w GOPROXY=https://goproxy.cn,direct
+```
+
 ## acknowledgements
 
 感谢 [腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=10042&cps_key=16b83d1aa2e322d67b11fa1daaa4ab6b)、[七牛云](https://portal.qiniu.com/signup?code=1h6w1ounb13yp) 提供云存储和国内 CDN。
