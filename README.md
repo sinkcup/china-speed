@@ -82,7 +82,7 @@ kubectl version
 curl -sS http://getcomposer.org.mirrors.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-## composer install
+## composer
 
 ```shell
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
@@ -107,7 +107,7 @@ mv composer.lock.tmp composer.lock
 curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo -E bash -
 ```
 
-## npm install
+## npm
 
 ```shell
 npm config set registry https://registry.npm.taobao.org
@@ -123,7 +123,7 @@ npm config delete registry
 
 ```shell
 mkdir ~/.pip
-cat > ~/.pip/pip.conf << EOF
+cat > ~/.pip/pip.conf << \EOF
 [global]
 index-url=https://pypi.doubanio.com/simple/
 #index-url=https://mirrors.aliyun.com/pypi/simple/
@@ -138,6 +138,42 @@ EOF
 # go env -w GOPROXY=https://goproxy.io,direct
 # goproxy.cn 采用 七牛大陆 CDN
 go env -w GOPROXY=https://goproxy.cn,direct
+```
+
+## gradle
+
+```shell
+sed -i 's/services.gradle.org/downloads.gradle-dn.com/g' ./gradle/wrapper/gradle-wrapper.properties
+```
+
+## gradle maven
+
+```shell
+mkdir ~/.gradle
+cat > ~/.gradle/init.gradle << \EOF
+def repoConfig = {
+    all { ArtifactRepository repo ->
+        if (repo instanceof MavenArtifactRepository) {
+            def url = repo.url.toString()
+            if (url.contains('repo1.maven.org/maven2')||url.contains('jcenter.bintray.com')) {
+                println "gradle init: [buildscript.repositories] (${repo.name}: ${repo.url}) removed"
+                remove repo
+            }
+        }
+    }
+    maven {
+        url 'http://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
+    }
+}
+
+allprojects {
+    buildscript {
+        repositories repoConfig
+    }
+
+    repositories repoConfig
+}
+EOF
 ```
 
 ## acknowledgements
