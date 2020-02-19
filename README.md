@@ -5,12 +5,21 @@
 [![CODING 持续集成](https://china-speed.coding.net/badges/china-speed/job/126839/build.svg)](https://coding.net/products/ci?cps_source=PIevZ6Jr)
 [![GitHub Actions](https://github.com/china-speed/china-speed.github.io/workflows/CI/badge.svg)](https://github.com/china-speed/china-speed.github.io/actions)
 
-## apt source
+## apt ubuntu
 
 ```shell
-find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.aliyun.com/g'
+find /etc/apt/ -name "*.list" -print0 | sudo xargs -0 sed -i 's/[a-z]\+.ubuntu.com/mirrors.aliyun.com/g'
 
-find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.cloud.tencent.com/g'
+find /etc/apt/ -name "*.list" -print0 | sudo xargs -0 sed -i 's/[a-z]\+..ubuntu.com/mirrors.cloud.tencent.com/g'
+```
+
+## apt debian
+
+```shell
+# 注意：debian docker apt 使用 HTTP，阿里云支持；而腾讯云只支持 HTTPS，需要额外安装 ca-certificates
+# https://github.com/china-speed/docker-library/tree/master/debian
+
+find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.aliyun.com/g'
 ```
 
 ## get docker
