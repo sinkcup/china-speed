@@ -155,15 +155,33 @@ def repoConfig = {
     all { ArtifactRepository repo ->
         if (repo instanceof MavenArtifactRepository) {
             def url = repo.url.toString()
-            if (url.contains('repo1.maven.org/maven2')||url.contains('jcenter.bintray.com')) {
+            if (url.contains('repo1.maven.org/maven2')
+                || url.contains('jcenter.bintray.com')
+                // google maven 已在中国落地，无需镜像
+                // || url.contains('maven.google.com')
+                || url.contains('plugins.gradle.org/m2')
+                || url.contains('repo.spring.io/libs-milestone')
+                || url.contains('repo.spring.io/plugins-release')
+                || url.contains('repo.grails.org/grails/core')
+                || url.contains('repository.apache.org/snapshots')
+            ) {
                 println "gradle init: [buildscript.repositories] (${repo.name}: ${repo.url}) removed"
                 remove repo
             }
         }
     }
-    maven {
-        url 'http://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
-    }
+
+    // 腾讯云 maven 镜像聚合了：central、jcenter、google、gradle-plugin
+    maven { url 'http://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
+    // 阿里云 https://help.aliyun.com/document_detail/102512.html
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    maven { url 'https://maven.aliyun.com/repository/spring' }
+    maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
+    maven { url 'https://maven.aliyun.com/repository/grails-core' }
+    maven { url 'https://maven.aliyun.com/repository/apache-snapshots' }
 }
 
 allprojects {
