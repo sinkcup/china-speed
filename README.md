@@ -194,6 +194,20 @@ allprojects {
 EOF
 ```
 
+## gem
+
+```shell
+gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+gem sources -l
+# 确保输出只有 gems.ruby-china.com 一个
+```
+
+## bundle
+
+```shell
+bundle config mirror.https://rubygems.org https://gems.ruby-china.com
+```
+
 ## acknowledgements
 
 感谢 [腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=10042&cps_key=16b83d1aa2e322d67b11fa1daaa4ab6b)、[七牛云](https://portal.qiniu.com/signup?code=1h6w1ounb13yp) 提供云存储和国内 CDN。
