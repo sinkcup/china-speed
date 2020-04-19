@@ -146,7 +146,7 @@ go env -w GOPROXY=https://goproxy.cn,direct
 ## gradle
 
 ```shell
-sed -i 's/services.gradle.org/downloads.gradle-dn.com/g' ./gradle/wrapper/gradle-wrapper.properties
+sed -i '' 's/services.gradle.org/downloads.gradle-dn.com/g' ./gradle/wrapper/gradle-wrapper.properties
 ```
 
 ## gradle maven
