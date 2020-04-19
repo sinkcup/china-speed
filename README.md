@@ -15,11 +15,12 @@ find /etc/apt/ -name "*.list" -print0 | sudo xargs -0 sed -i 's/[a-z]\+..ubuntu.
 
 ## apt debian
 
-```shell
-# 注意：debian docker apt 使用 HTTP，阿里云支持；而腾讯云只支持 HTTPS，需要额外安装 ca-certificates
-# https://github.com/china-speed/docker-library/tree/master/debian
+注意：apt 使用 HTTP，阿里云、腾讯云的源都支持；如果用了 HTTPS 源，则 debian docker 需要额外安装 ca-certificates，导致体积变大。
 
+```shell
 find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.aliyun.com/g'
+
+find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.cloud.tencent.com/g'
 ```
 
 ## get docker
@@ -28,7 +29,8 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script
 
 curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
-curl -fsSL http://get.docker.com.mirrors.china-speed.org.cn | sudo sh --
+
+# curl -fsSL http://get.docker.com.mirrors.china-speed.org.cn | sudo sh --
 
 sudo usermod -aG docker $USER
 ```
@@ -49,20 +51,16 @@ sudo service docker restart
 docker info
 ```
 
-## docker gcr.io
+## docker Azure
 
-```shell
-# docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
-
-docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
-```
-
-## docker mcr.microsoft.com
+> 目前 *.azk8s.cn 已经仅限于 Azure China IP 使用，不再对外提供服务。参考：[Azure/container-service-for-azure-china#60](https://github.com/Azure/container-service-for-azure-china/issues/60)
 
 ```shell
 # docker pull mcr.microsoft.com/dotnet/core/runtime:3.1
+# docker pull mcr.azk8s.cn/dotnet/core/runtime:3.1
 
-docker pull mcr.azk8s.cn/dotnet/core/runtime:3.1
+# docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
+# docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
 ```
 
 ## get kubectl
@@ -70,7 +68,7 @@ docker pull mcr.azk8s.cn/dotnet/core/runtime:3.1
 ```shell
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
 
-curl -LO http://storage.googleapis.com.mirrors.china-speed.org.cn/kubernetes-release/release/v1.14.8/bin/linux/amd64/kubectl
+curl -LO http://storage.googleapis.com.mirrors.china-speed.org.cn/kubernetes-release/release/v1.16.3/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl version
@@ -109,14 +107,19 @@ curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo
 
 ## npm
 
+注意：`npm install` 不使用 `package-lock.json` 中的完整下载链接（resolved 字段），而是使用 config registry。
+
 ```shell
 npm config set registry https://registry.npm.taobao.org
-npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass
+npm config set disturl https://npm.taobao.org/dist
+npm config set electron_mirror https://npm.taobao.org/mirrors/electron/
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
+npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/
 
-npm config set registry https://mirrors.cloud.tencent.com/npm/
-npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
+# npm config set registry https://mirrors.cloud.tencent.com/npm/
+# npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
 
-npm config delete registry
+# npm config delete registry
 ```
 
 ## pip
@@ -192,6 +195,23 @@ allprojects {
     repositories repoConfig
 }
 EOF
+```
+
+## maven
+
+```shell
+sudo vi /etc/maven/settings.xml
+```
+
+```xml
+<mirrors>
+    <mirror>
+        <id>tencent-maven</id>
+        <mirrorOf>*</mirrorOf>
+        <name>腾讯云公共仓库</name>
+        <url>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+    </mirror>
+</mirrors>
 ```
 
 ## gem
