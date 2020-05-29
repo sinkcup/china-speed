@@ -42,7 +42,6 @@ sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
   "registry-mirrors": [
-    "https://dockerhub.azk8s.cn",
     "https://hub-mirror.c.163.com"
   ]
 }
@@ -53,7 +52,7 @@ docker info
 
 ## docker Azure
 
-> 目前 *.azk8s.cn 已经仅限于 Azure China IP 使用，不再对外提供服务。参考：[Azure/container-service-for-azure-china#60](https://github.com/Azure/container-service-for-azure-china/issues/60)
+> *.azk8s.cn 不再对外提供服务，仅限于 Azure China IP 使用。参考：[Azure/container-service-for-azure-china#60](https://github.com/Azure/container-service-for-azure-china/issues/60)
 
 ```shell
 # docker pull mcr.microsoft.com/dotnet/core/runtime:3.1
@@ -115,6 +114,7 @@ npm config set disturl https://npm.taobao.org/dist
 npm config set electron_mirror https://npm.taobao.org/mirrors/electron/
 npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
 npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/
+npm config set puppeteer_download_host=https://npm.taobao.org/mirrors
 
 # npm config set registry https://mirrors.cloud.tencent.com/npm/
 # npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
