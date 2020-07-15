@@ -217,7 +217,7 @@ sudo vi /etc/maven/settings.xml
 ## maven wrapper
 
 ```shell
-sed -i '' 's/repo.maven.apache.org\/maven2/mirrors.cloud.tencent.com\/nexus\/repository\/maven-public/g' ./.mvn/wrapper/maven-wrapper.properties
+sed -i 's/repo.maven.apache.org\/maven2/mirrors.cloud.tencent.com\/nexus\/repository\/maven-public/g' ./.mvn/wrapper/maven-wrapper.properties
 ```
 
 ## gem
