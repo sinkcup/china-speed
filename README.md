@@ -148,10 +148,16 @@ EOF
 go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
-## gradle
+## gradle bin
+
+官方 CDN 域名：downloads.gradle-dn.com 曾在中国落地，现已取消，无法继续使用。
 
 ```shell
-sed -i 's/services.gradle.org/downloads.gradle-dn.com/g' ./gradle/wrapper/gradle-wrapper.properties
+# 腾讯云
+distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-6.6.1-bin.zip
+
+# 默认国外
+distributionUrl=https\://services.gradle.org/distributions/gradle-6.6.1-bin.zip
 ```
 
 ## gradle maven
