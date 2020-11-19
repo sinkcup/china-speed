@@ -109,17 +109,22 @@ curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo
 注意：`npm install` 不使用 `package-lock.json` 中的完整下载链接（resolved 字段），而是使用 config registry。
 
 ```shell
+# 淘宝
 npm config set registry https://registry.npm.taobao.org
 npm config set disturl https://npm.taobao.org/dist
 npm config set electron_mirror https://npm.taobao.org/mirrors/electron/
 npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
 npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/
-npm config set puppeteer_download_host=https://npm.taobao.org/mirrors
+npm config set puppeteer_download_host https://npm.taobao.org/mirrors
+npm config set chromedriver_cdnurl http://npm.taobao.org/mirrors/chromedriver
 
-# npm config set registry https://mirrors.cloud.tencent.com/npm/
-# npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
+# 腾讯云
+npm config set registry https://mirrors.cloud.tencent.com/npm/
+npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
+npm config set chromedriver_cdnurl https://mirrors.cloud.tencent.com/npm/chromedriver
 
-# npm config delete registry
+# 恢复默认
+npm config delete registry
 ```
 
 ## pip
