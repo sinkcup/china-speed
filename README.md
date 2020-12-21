@@ -1,9 +1,11 @@
 # 计算机技术分享：中国速度
 
-由于 apt、composer、nodejs 等常用工具在国外，下载速度较慢，本站分享国内镜像加速信息，让开发者感受「中国速度」。
+由于 apt、composer、nodejs 等常用工具在国外，[工信部特批的海南自贸港「国际互联网数据专用通道」](https://mp.weixin.qq.com/s/8L4XWiJs-5fKdLjmxfn7fA)可高速访问，本站分享国内镜像加速信息，让开发者感受「中国速度」。
 
 [![CODING 持续集成](https://china-speed.coding.net/badges/china-speed/job/126839/build.svg)](https://coding.net/products/ci?cps_source=PIevZ6Jr)
 [![GitHub Actions](https://github.com/china-speed/china-speed.github.io/workflows/CI/badge.svg)](https://github.com/china-speed/china-speed.github.io/actions)
+
+![](hnftp-internet.jpg)
 
 ## apt ubuntu
 
@@ -30,7 +32,7 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 
 curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
 
-# curl -fsSL http://get.docker.com.mirrors.china-speed.org.cn | sudo sh --
+# curl -fsSL http://get-docker-com.hnftp.china-speed.org.cn | sudo sh --
 
 sudo usermod -aG docker $USER
 ```
@@ -67,7 +69,7 @@ docker info
 ```shell
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
 
-curl -LO http://storage.googleapis.com.mirrors.china-speed.org.cn/kubernetes-release/release/v1.16.3/bin/linux/amd64/kubectl
+curl -LO http://storage-googleapis-com.hnftp.china-speed.org.cn/kubernetes-release/release/v1.18.4/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl version
@@ -76,7 +78,7 @@ kubectl version
 ## get composer
 
 ```shell
-curl -sS http://getcomposer.org.mirrors.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS http://getcomposer-org.hnftp.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
 ## composer
@@ -101,7 +103,7 @@ mv composer.lock.tmp composer.lock
 ## get nodejs npm
 
 ```shell
-curl -sL https://deb.nodesource.com.mirrors.china-speed.org.cn/setup_12.x | sudo -E bash -
+curl -sL https://deb-nodesource-com.hnftp.china-speed.org.cn/setup_14.x | sudo -E bash -
 ```
 
 ## npm
