@@ -1,6 +1,6 @@
 # 计算机技术分享：中国速度
 
-由于 apt、composer、nodejs 等常用工具在国外，[工信部特批的海南自贸港「国际互联网数据专用通道」](https://mp.weixin.qq.com/s/8L4XWiJs-5fKdLjmxfn7fA)可高速访问，本站分享国内镜像加速信息，让开发者感受「中国速度」。
+apt、composer、nodejs 等常用工具在国外，内地开发者访问较慢，而[工信部特批的海南自贸港「国际互联网数据专用通道」](https://mp.weixin.qq.com/s/8L4XWiJs-5fKdLjmxfn7fA)可高速访问，本站分享国内镜像加速信息，让开发者感受「中国速度」。
 
 [![CODING 持续集成](https://china-speed.coding.net/badges/china-speed/job/126839/build.svg)](https://coding.net/products/ci?cps_source=PIevZ6Jr)
 [![GitHub Actions](https://github.com/china-speed/china-speed.github.io/workflows/CI/badge.svg)](https://github.com/china-speed/china-speed.github.io/actions)
@@ -73,6 +73,17 @@ curl -LO http://storage-googleapis-com.hnftp.china-speed.org.cn/kubernetes-relea
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl version
+```
+
+## get helm
+
+```shell
+# https://github.com/helm/helm/releases
+
+curl -LO https://get-helm-sh.hnftp.china-speed.org.cn/helm-v3.4.2-linux-amd64.tar.gz
+tar -zxvf helm-v3.4.2-linux-amd64.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin/
+helm version
 ```
 
 ## get composer
