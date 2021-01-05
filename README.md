@@ -1,6 +1,6 @@
 # 计算机技术分享：中国速度
 
-apt、composer、nodejs 等常用工具在国外，内地开发者访问较慢，而[工信部特批的海南自贸港「国际互联网数据专用通道」](https://mp.weixin.qq.com/s/8L4XWiJs-5fKdLjmxfn7fA)可高速访问，本站分享国内镜像加速信息，让开发者感受「中国速度」。
+apt、composer、nodejs 等常用工具在国外，内地开发者访问较慢，而[工信部特批的海南自贸港「国际互联网数据专用通道」](https://mp.weixin.qq.com/s/8L4XWiJs-5fKdLjmxfn7fA)可高速访问，本站分享内地镜像加速信息，让开发者感受「中国速度」。
 
 [![CODING 持续集成](https://china-speed.coding.net/badges/china-speed/job/126839/build.svg)](https://coding.net/products/ci?cps_source=PIevZ6Jr)
 [![GitHub Actions](https://github.com/china-speed/china-speed.github.io/workflows/CI/badge.svg)](https://github.com/china-speed/china-speed.github.io/actions)
@@ -100,7 +100,7 @@ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 composer config -g --unset repos.packagist
 ```
 
-## composer install when lock exists
+## composer lock
 
 ```shell
 url_suffix='.dist.mirrors[0].url="https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%"'
@@ -260,7 +260,7 @@ bundle config mirror.https://rubygems.org https://gems.ruby-china.com
 
 ## acknowledgements
 
-感谢 [腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=10042&cps_key=16b83d1aa2e322d67b11fa1daaa4ab6b)、[七牛云](https://portal.qiniu.com/signup?code=1h6w1ounb13yp) 提供云存储和国内 CDN。
+感谢 [腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=10042&cps_key=16b83d1aa2e322d67b11fa1daaa4ab6b)、[七牛云](https://marketing.qiniu.com/cps/redirect?redirect_id=4&cps_key=1h6w1ounb13yp) 提供云存储和国内 CDN。
 
 感谢 [CODING 持续集成](https://coding.net/products/ci?cps_source=PIevZ6Jr) 提供免费的 Jenkins 云服务。
 
