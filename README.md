@@ -175,6 +175,8 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-6.6.1-bin.zip
 
 ## gradle maven
 
+Google maven 曾在中国落地，现已取消，需要内地加速。
+
 ```shell
 mkdir ~/.gradle
 cat > ~/.gradle/init.gradle << \EOF
@@ -184,8 +186,7 @@ def repoConfig = {
             def url = repo.url.toString()
             if (url.contains('repo1.maven.org/maven2')
                 || url.contains('jcenter.bintray.com')
-                // google maven 已在中国落地，无需镜像
-                // || url.contains('maven.google.com')
+                || url.contains('maven.google.com')
                 || url.contains('plugins.gradle.org/m2')
                 || url.contains('repo.spring.io/libs-milestone')
                 || url.contains('repo.spring.io/plugins-release')
