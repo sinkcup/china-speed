@@ -89,6 +89,10 @@ helm version
 ## get composer
 
 ```shell
+curl https://mirrors.cloud.tencent.com/composer/composer.phar -o /usr/local/bin/composer
+curl https://mirrors.aliyun.com/composer/composer.phar -o /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
+
 curl -sS http://getcomposer-org.hnftp.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
