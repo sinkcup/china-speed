@@ -10,9 +10,9 @@ apt、composer、nodejs 等常用工具在国外，内地开发者访问较慢�
 ## apt ubuntu
 
 ```shell
-find /etc/apt/ -name "*.list" -print0 | sudo xargs -0 sed -i 's/[a-z]\+.ubuntu.com/mirrors.aliyun.com/g'
+find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.ubuntu.com/mirrors.aliyun.com/g'
 
-find /etc/apt/ -name "*.list" -print0 | sudo xargs -0 sed -i 's/[a-z]\+..ubuntu.com/mirrors.cloud.tencent.com/g'
+find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+..ubuntu.com/mirrors.cloud.tencent.com/g'
 ```
 
 ## apt debian
@@ -30,7 +30,7 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 ```shell
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script
 
-curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
+curl -fsSL https://get.docker.com | sh -s -- --mirror Aliyun
 
 # curl -fsSL http://get-docker-com.hnftp.china-speed.org.cn | sudo sh --
 
