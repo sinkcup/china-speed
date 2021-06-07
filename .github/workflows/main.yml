@@ -25,7 +25,7 @@ jobs:
         CUSTOM_DOMAIN: china-speed.org
       run: | 
         sudo apt-get update
-        sudo apt-get install -y python-pip
+        sudo apt-get install -y python3-pip
         sudo -H pip install mkdocs
         ./build-docs.sh
         echo $CUSTOM_DOMAIN > site/CNAME
