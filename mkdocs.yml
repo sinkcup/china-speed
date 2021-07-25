@@ -3,7 +3,7 @@ site_url: "https://china-speed.org.cn/"
 site_favicon: "/favicon.ico"
 repo_url: https://github.com/china-speed/china-speed.github.io/
 edit_uri: edit/mkdocs/
-copyright: <a rel="nofollow" href="http://www.beian.miit.gov.cn">沪ICP备19045595号-2</a>
+copyright: <a rel="nofollow" href="https://beian.miit.gov.cn">沪ICP备19045595号-2</a>
 google_analytics: ['UA-155057169-1', 'china-speed.org.cn']
 nav:
     - "China Speed": "README.md"
