@@ -37,4 +37,4 @@ jobs:
         target_branch: master
         build_dir: site
       env:
-        GITHUB_PAT: ${{ secrets.GIT_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
