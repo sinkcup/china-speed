@@ -32,8 +32,6 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 
 curl -fsSL https://get.docker.com | sh -s -- --mirror Aliyun
 
-# curl -fsSL http://get-docker-com.hnftp.china-speed.org.cn | sudo sh --
-
 sudo usermod -aG docker $USER
 ```
 
@@ -69,9 +67,9 @@ docker info
 ```shell
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
 
-curl -LO http://storage-googleapis-com.hnftp.china-speed.org.cn/kubernetes-release/release/v1.18.4/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/kubectl-linux-amd64?version=v1.22.4" -O kubectl-linux-amd64-v1.22.4 | true
+chmod +x ./kubectl-linux-amd64-v1.22.4
+sudo mv ./kubectl-linux-amd64-v1.22.4 /usr/local/bin/kubectl
 kubectl version
 ```
 
@@ -80,7 +78,7 @@ kubectl version
 ```shell
 # https://github.com/helm/helm/releases
 
-curl -LO https://get-helm-sh.hnftp.china-speed.org.cn/helm-v3.4.2-linux-amd64.tar.gz
+wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/helm-linux-amd64.tar.gz?version=v3.7.1" -O helm-linux-amd64-v3.7.1.tar.gz | true
 tar -zxvf helm-v3.4.2-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/
 helm version
@@ -92,8 +90,6 @@ helm version
 curl https://mirrors.cloud.tencent.com/composer/composer.phar -o /usr/local/bin/composer
 curl https://mirrors.aliyun.com/composer/composer.phar -o /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
-
-curl -sS http://getcomposer-org.hnftp.china-speed.org.cn/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
 ## composer
@@ -118,7 +114,9 @@ mv composer.lock.tmp composer.lock
 ## get nodejs npm
 
 ```shell
-curl -sL https://deb-nodesource-com.hnftp.china-speed.org.cn/setup_14.x | sudo -E bash -
+wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/node-linux-x64.tar.xz?version=v16.13.0" -O node-v16.13.0-linux-x64.tar.xz | true
+tar -xf node-v16.13.0-linux-x64.tar.xz -C /usr --strip-components 1
+node -v
 ```
 
 ## npm
@@ -127,13 +125,13 @@ curl -sL https://deb-nodesource-com.hnftp.china-speed.org.cn/setup_14.x | sudo -
 
 ```shell
 # 淘宝
-npm config set registry https://registry.npm.taobao.org
-npm config set disturl https://npm.taobao.org/dist
-npm config set electron_mirror https://npm.taobao.org/mirrors/electron/
-npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
-npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/
-npm config set puppeteer_download_host https://npm.taobao.org/mirrors
-npm config set chromedriver_cdnurl http://npm.taobao.org/mirrors/chromedriver
+npm config set registry https://registry.npmmirror.com
+npm config set disturl https://npmmirror.com/dist
+npm config set electron_mirror https://npmmirror.com/mirrors/electron/
+npm config set sass_binary_site https://npmmirror.com/mirrors/node-sass/
+npm config set phantomjs_cdnurl https://npmmirror.com/mirrors/phantomjs/
+npm config set puppeteer_download_host https://npmmirror.com/mirrors
+npm config set chromedriver_cdnurl http://npmmirror.com/mirrors/chromedriver
 
 # 腾讯云
 npm config set registry https://mirrors.cloud.tencent.com/npm/
