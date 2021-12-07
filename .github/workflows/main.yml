@@ -3,7 +3,10 @@ name: CI
 on:
   push:
     branches:
-    - mkdocs
+      - mkdocs
+  pull_request:
+    branches:
+      - mkdocs
 
 jobs:
   build:
@@ -29,8 +32,9 @@ jobs:
 
     - name: deploy to gh-pages
       uses: crazy-max/ghaction-github-pages@v2
+      if: github.ref == 'refs/heads/mkdocs'
       with:
         target_branch: master
         build_dir: site
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PAT: ${{ secrets.GIT_TOKEN }}
