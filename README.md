@@ -204,7 +204,7 @@ def repoConfig = {
     }
 
     // 腾讯云 maven 镜像聚合了：central、jcenter、google、gradle-plugin
-    maven { url 'http://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
+    maven { url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
     // 阿里云 https://help.aliyun.com/document_detail/102512.html
     maven { url 'https://maven.aliyun.com/repository/central' }
     maven { url 'https://maven.aliyun.com/repository/jcenter' }
