@@ -2,7 +2,7 @@
 
 apt、composer、nodejs 等常用工具在国外，内地开发者访问较慢，而[工信部特批的海南自贸港「国际互联网数据专用通道」](https://mp.weixin.qq.com/s/8L4XWiJs-5fKdLjmxfn7fA)可高速访问，本站分享内地镜像加速信息，让开发者感受「中国速度」。
 
-[![CODING 持续集成]([![构建状态](https://sinkcup.coding.net/badges/china-speed/job/943224/mkdocs/build.svg)](https://sinkcup.coding.net/p/china-speed/ci/job))](https://coding.net/products/ci?cps_source=PIevZ6Jr)
+[![CODING 持续集成](https://sinkcup.coding.net/badges/china-speed/job/943224/mkdocs/build.svg)](https://coding.net/products/ci?cps_source=PIevZ6Jr)
 [![GitHub Actions](https://github.com/china-speed/china-speed.github.io/workflows/CI/badge.svg)](https://github.com/china-speed/china-speed.github.io/actions)
 
 ![](hnftp-internet.jpg)
