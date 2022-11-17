@@ -232,15 +232,63 @@ EOF
 sudo vi /etc/maven/settings.xml
 ```
 
+```shell
+vi ./settings.xml
+mvn package -s settings.xml
+```
+
+https://docs.gitlab.cn/jh/user/packages/maven_repository/#%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%88%B0-maven-central
+
 ```xml
-<mirrors>
+<settings>
+  <servers>
+    <server>
+      <id>central-proxy</id>
+      <configuration>
+        <httpHeaders>
+          <property>
+            <name>Job-Token</name>
+            <value>${CI_JOB_TOKEN}</value>
+          </property>
+        </httpHeaders>
+      </configuration>
+    </server>
+  </servers>
+  <mirrors>
     <mirror>
-        <id>tencent-maven</id>
-        <mirrorOf>*</mirrorOf>
-        <name>腾讯云公共仓库</name>
-        <url>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+      <id>central-proxy</id>
+      <name>GitLab proxy of central repo</name>
+      <url>https://jihulab.com/api/v4/groups/14276/-/packages/maven</url>
+      <mirrorOf>central</mirrorOf>
     </mirror>
+  </mirrors>
+</settings>
+```
+
+```
+<settings>
+    <mirrors>
+        <mirror>
+            <id>aliyunmaven</id>
+            <mirrorOf>*</mirrorOf>
+            <name>阿里云公共仓库</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </mirror>
 </mirrors>
+</settings>
+```
+
+```xml
+<settings>
+    <mirrors>
+        <mirror>
+            <id>tencent-maven</id>
+            <mirrorOf>*</mirrorOf>
+            <name>腾讯云公共仓库</name>
+            <url>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+        </mirror>
+    </mirrors>
+</settings>
 ```
 
 ## maven wrapper
