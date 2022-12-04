@@ -189,6 +189,7 @@ def repoConfig = {
         if (repo instanceof MavenArtifactRepository) {
             def url = repo.url.toString()
             if (url.contains('repo1.maven.org/maven2')
+                || url.contains('repo.maven.apache.org/maven2')
                 || url.contains('jcenter.bintray.com')
                 || url.contains('maven.google.com')
                 || url.contains('plugins.gradle.org/m2')
@@ -205,7 +206,7 @@ def repoConfig = {
 
     // 腾讯云 maven 镜像聚合了：central、jcenter、google、gradle-plugin
     maven { url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
-    // 阿里云 https://help.aliyun.com/document_detail/102512.html
+    // 阿里云 https://developer.aliyun.com/mvn/guide
     maven { url 'https://maven.aliyun.com/repository/central' }
     maven { url 'https://maven.aliyun.com/repository/jcenter' }
     maven { url 'https://maven.aliyun.com/repository/google' }
