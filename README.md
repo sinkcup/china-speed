@@ -2,9 +2,6 @@
 
 apt、composer、nodejs 等常用工具在国外，内地开发者访问较慢，而[工信部特批的海南自贸港「国际互联网数据专用通道」](https://mp.weixin.qq.com/s/8L4XWiJs-5fKdLjmxfn7fA)可高速访问，本站分享内地镜像加速信息，让开发者感受「中国速度」。
 
-[![CODING 持续集成](https://sinkcup.coding.net/badges/china-speed/job/943224/mkdocs/build.svg)](https://coding.net/products/ci?cps_source=PIevZ6Jr)
-[![GitHub Actions](https://github.com/china-speed/china-speed.github.io/workflows/CI/badge.svg)](https://github.com/china-speed/china-speed.github.io/actions)
-
 ![](hnftp-internet.jpg)
 
 ## apt ubuntu
@@ -87,6 +84,47 @@ docker info
 
 # docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
 # docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
+```
+
+## gitlab download
+
+```shell
+curl -L get.gitlab.cn | bash
+sudo apt install -y gitlab-jh
+# sudo yum install -y gitlab-jh
+
+sudo gitlab-ctl reconfigure
+sudo cat /etc/gitlab/initial_root_password
+```
+
+## gitlab runner
+
+注意：debian/Ubuntu 和 CentOS/Redhat 是两个脚本。
+
+```shell
+# debian/Ubuntu
+curl -L "https://packages.gitlab.cn/repository/raw/scripts/runner.deb.sh" | sudo bash
+sudo apt install -y gitlab-runner
+
+# CentOS/Redhat
+curl -L "https://packages.gitlab.cn/repository/raw/scripts/runner.rpm.sh" | sudo bash
+sudo yum install -y gitlab-runner
+```
+
+```
+sudo gitlab-runner register
+> Enter an executor: kubernetes, instance, custom, parallels, virtualbox, docker, docker-windows, shell, ssh, docker+machine, docker-autoscaler:
+> docker
+> Enter the default Docker image (for example, ruby:2.7):
+> registry.jihulab.com/ultimate-plan/docker/busybox:latest
+```
+
+```shell
+sudo vi /etc/gitlab-runner/config.toml
+  [runners.docker]
+    tls_verify = false
+    image = "registry.jihulab.com/ultimate-plan/docker/busybox:latest"
+    helper_image = "registry.gitlab.cn/gitlab-cn/gitlab-runner/gitlab-runner-helper:x86_64-bbcb5aba"
 ```
 
 ## go
