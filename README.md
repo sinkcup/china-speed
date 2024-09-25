@@ -25,7 +25,34 @@ find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mi
 find /etc/apt/ -name "*.list" -print0 | xargs -0 sed -i 's/[a-z]\+.debian.org/mirrors.cloud.tencent.com/g'
 ```
 
-## get docker
+## composer download
+
+```shell
+curl https://mirrors.cloud.tencent.com/composer/composer.phar -o /usr/local/bin/composer
+curl https://mirrors.aliyun.com/composer/composer.phar -o /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
+```
+
+## composer mirror
+
+```shell
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
+composer config -g --unset repos.packagist
+```
+
+## composer lock
+
+```shell
+url_suffix='.dist.mirrors[0].url="https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%"'
+jq '."packages"[]'"$url_suffix" composer.lock \
+    | jq '."packages"[].dist.mirrors[0].preferred=true' \
+    | jq '."packages-dev"[]'"$url_suffix" \
+    | jq --indent 4 '."packages-dev"[].dist.mirrors[0].preferred=true' > composer.lock.tmp
+mv composer.lock.tmp composer.lock
+```
+
+## docker download
 
 ```shell
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script
@@ -60,98 +87,6 @@ docker info
 
 # docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
 # docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
-```
-
-## get kubectl
-
-```shell
-# https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
-
-wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/kubectl-linux-amd64?version=v1.22.4" -O kubectl-linux-amd64-v1.22.4 | true
-chmod +x ./kubectl-linux-amd64-v1.22.4
-sudo mv ./kubectl-linux-amd64-v1.22.4 /usr/local/bin/kubectl
-kubectl version
-```
-
-## get helm
-
-```shell
-# https://github.com/helm/helm/releases
-
-wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/helm-linux-amd64.tar.gz?version=v3.7.1" -O helm-linux-amd64-v3.7.1.tar.gz | true
-tar -zxvf helm-v3.4.2-linux-amd64.tar.gz
-sudo mv linux-amd64/helm /usr/local/bin/
-helm version
-```
-
-## get composer
-
-```shell
-curl https://mirrors.cloud.tencent.com/composer/composer.phar -o /usr/local/bin/composer
-curl https://mirrors.aliyun.com/composer/composer.phar -o /usr/local/bin/composer
-chmod +x /usr/local/bin/composer
-```
-
-## composer
-
-```shell
-composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-
-composer config -g --unset repos.packagist
-```
-
-## composer lock
-
-```shell
-url_suffix='.dist.mirrors[0].url="https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%"'
-jq '."packages"[]'"$url_suffix" composer.lock \
-    | jq '."packages"[].dist.mirrors[0].preferred=true' \
-    | jq '."packages-dev"[]'"$url_suffix" \
-    | jq --indent 4 '."packages-dev"[].dist.mirrors[0].preferred=true' > composer.lock.tmp
-mv composer.lock.tmp composer.lock
-```
-
-## get nodejs npm
-
-```shell
-wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/node-linux-x64.tar.xz?version=v16.13.0" -O node-v16.13.0-linux-x64.tar.xz | true
-tar -xf node-v16.13.0-linux-x64.tar.xz -C /usr --strip-components 1
-node -v
-```
-
-## npm
-
-注意：`npm install` 不使用 `package-lock.json` 中的完整下载链接（resolved 字段），而是使用 config registry。
-
-```shell
-# 淘宝
-npm config set registry https://registry.npmmirror.com
-npm config set disturl https://npmmirror.com/dist
-npm config set electron_mirror https://npmmirror.com/mirrors/electron/
-npm config set sass_binary_site https://npmmirror.com/mirrors/node-sass/
-npm config set phantomjs_cdnurl https://npmmirror.com/mirrors/phantomjs/
-npm config set puppeteer_download_host https://npmmirror.com/mirrors
-npm config set chromedriver_cdnurl http://npmmirror.com/mirrors/chromedriver
-
-# 腾讯云
-npm config set registry https://mirrors.cloud.tencent.com/npm/
-npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
-npm config set chromedriver_cdnurl https://mirrors.cloud.tencent.com/npm/chromedriver
-
-# 恢复默认
-npm config delete registry
-```
-
-## pip
-
-```shell
-mkdir ~/.pip
-cat > ~/.pip/pip.conf << \EOF
-[global]
-index-url=https://pypi.doubanio.com/simple/
-#index-url=https://mirrors.aliyun.com/pypi/simple/
-#index-url=https://mirrors.cloud.tencent.com/pypi/simple/
-EOF
 ```
 
 ## go
@@ -227,6 +162,28 @@ allprojects {
 EOF
 ```
 
+## helm download
+
+```shell
+# https://github.com/helm/helm/releases
+
+wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/helm-linux-amd64.tar.gz?version=v3.7.1" -O helm-linux-amd64-v3.7.1.tar.gz | true
+tar -zxvf helm-v3.4.2-linux-amd64.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin/
+helm version
+```
+
+## kubectl download
+
+```shell
+# https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
+
+wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/kubectl-linux-amd64?version=v1.22.4" -O kubectl-linux-amd64-v1.22.4 | true
+chmod +x ./kubectl-linux-amd64-v1.22.4
+sudo mv ./kubectl-linux-amd64-v1.22.4 /usr/local/bin/kubectl
+kubectl version
+```
+
 ## maven
 
 ```shell
@@ -265,7 +222,50 @@ mvn package -s settings.xml
 sed -i 's/repo.maven.apache.org\/maven2/mirrors.cloud.tencent.com\/nexus\/repository\/maven-public/g' ./.mvn/wrapper/maven-wrapper.properties
 ```
 
-## gem
+## nodejs npm download
+
+```shell
+wget -nc "https://coding-public-generic.pkg.coding.net/public/downloads/node-linux-x64.tar.xz?version=v16.13.0" -O node-v16.13.0-linux-x64.tar.xz | true
+tar -xf node-v16.13.0-linux-x64.tar.xz -C /usr --strip-components 1
+node -v
+```
+
+## npm
+
+注意：`npm install` 不使用 `package-lock.json` 中的完整下载链接（resolved 字段），而是使用 config registry。
+
+```shell
+# 淘宝
+npm config set registry https://registry.npmmirror.com
+npm config set disturl https://npmmirror.com/dist
+npm config set electron_mirror https://npmmirror.com/mirrors/electron/
+npm config set sass_binary_site https://npmmirror.com/mirrors/node-sass/
+npm config set phantomjs_cdnurl https://npmmirror.com/mirrors/phantomjs/
+npm config set puppeteer_download_host https://npmmirror.com/mirrors
+npm config set chromedriver_cdnurl http://npmmirror.com/mirrors/chromedriver
+
+# 腾讯云
+npm config set registry https://mirrors.cloud.tencent.com/npm/
+npm config set sass_binary_site https://mirrors.cloud.tencent.com/npm/node-sass
+npm config set chromedriver_cdnurl https://mirrors.cloud.tencent.com/npm/chromedriver
+
+# 恢复默认
+npm config delete registry
+```
+
+## pip
+
+```shell
+mkdir ~/.pip
+cat > ~/.pip/pip.conf << \EOF
+[global]
+index-url=https://pypi.doubanio.com/simple/
+#index-url=https://mirrors.aliyun.com/pypi/simple/
+#index-url=https://mirrors.cloud.tencent.com/pypi/simple/
+EOF
+```
+
+## ruby gem
 
 ```shell
 gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
@@ -273,7 +273,7 @@ gem sources -l
 # 确保输出只有 gems.ruby-china.com 一个
 ```
 
-## bundle
+## ruby bundle
 
 ```shell
 bundle config mirror.https://rubygems.org https://gems.ruby-china.com
